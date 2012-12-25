@@ -5,7 +5,7 @@ function Autoload($class_name)
     throw new Exception('Class name is empty');
   }
 
-  $lib_path = dirname(__FILE__) . '/lib/';
+  $lib_path = dirname(__FILE__) . '/';
   if (empty($lib_path)) {
     throw new Exception($lib_path . 'is empty');
   }
