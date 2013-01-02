@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 $app = new Slim(array(
 ));
 
-$my_view = new View();
+$app->view(new View());
 
 $app->get('/', function () {
     echo 'hoge';
