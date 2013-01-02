@@ -1,5 +1,6 @@
 {
     "require": {
         "slim/slim": "1.6.4"
+      , "teqneers/PHP-Stream-Wrapper-for-Git": "*"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "hash": "1c9140d5d0200fcf3c7ebed2d23ee61c",
+    "hash": "517697cc2bfd30a8e18ed3647d5526e6",
     "packages": [
         {
             "name": "slim/slim",
@@ -43,6 +43,49 @@
                 "microframework",
                 "rest",
                 "router"
+            ]
+        },
+        {
+            "name": "teqneers/PHP-Stream-Wrapper-for-Git",
+            "version": "v0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git",
+                "reference": "v0.2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git/archive/v0.2.2.zip",
+                "reference": "v0.2.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2011-12-30 05:07:48",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "TQ\\Git": "src/TQ"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gehrig",
+                    "email": "gehrig@teqneers.de",
+                    "homepage": "http://opensource.teqneers.de/"
+                }
+            ],
+            "description": "Git Streamwrapper for PHP",
+            "homepage": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git",
+            "keywords": [
+                "git",
+                "streamwrapper"
             ]
         }
     ],
