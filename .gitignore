@@ -3,3 +3,5 @@ logs/*
 /nbproject/
 test/Gittestdir/
 vendor/*
+.idea/*
+gistPHP.iml
