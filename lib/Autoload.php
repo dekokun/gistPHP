@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+
 function Autoload($class_name) {
   if (empty($class_name)) {
     throw new Exception('Class name is empty');
