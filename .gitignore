@@ -2,3 +2,4 @@ repos/*
 logs/*
 /nbproject/
 test/Gittestdir/
+vendor/*
