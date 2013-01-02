@@ -7,7 +7,7 @@
  *
  */
 
-class View extends \Slim\View
+class View extends Slim_View
 {
     static protected $_layout = NULL;
 

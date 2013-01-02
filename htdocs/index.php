@@ -2,11 +2,11 @@
 
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
-$myview = new \Dekokun\View();
 
 $app = new Slim(array(
-    'view' => $myview
 ));
+
+$my_view = new View();
 
 $app->get('/', function () {
     echo 'hoge';

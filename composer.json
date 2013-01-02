@@ -2,7 +2,7 @@
     "repositories": [
     ],
     "autoload": {
-        "psr-0": {"Dekokun": "lib"}
+        "psr-0": {"": "lib"}
     },
     "require": {
         "slim/slim": "1.6.4"
