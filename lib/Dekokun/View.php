@@ -6,7 +6,8 @@
  * Time: 18:49
  *
  */
-class My_View extends Slim_View
+
+class View extends \Slim\View
 {
     static protected $_layout = NULL;
 

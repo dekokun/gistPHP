@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/../lib/Autoload.php';
+require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
-$myview = new My_View();
+$myview = new \Dekokun\View();
 
 $app = new Slim(array(
     'view' => $myview
