@@ -4,4 +4,4 @@ logs/*
 test/Gittestdir/
 vendor/*
 .idea/*
-gistPHP.iml
+*.iml
