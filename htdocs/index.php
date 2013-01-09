@@ -31,7 +31,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
     var_dump($git->getCurrentCommit());
     var_dump($git->getStatus());
     var_dump($git->getLog());
-    var_dump($git->showFile('hoge', $commit_id));
+    var_dump($git->showFile('index.txt', $commit_id));
     echo $repo_id;
     echo '</pre>';
 });
