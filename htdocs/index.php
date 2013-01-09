@@ -65,7 +65,9 @@ $app->put('/repos/:repo_id', function ($repo_id) use($app, $binary) {
             $git->add(array($file_name));
         }
     }
-    $git->commit(date('Y/m/d H:i:s'));
+    if($git->isDirty()){
+        $git->commit(date('Y/m/d H:i:s'));
+    }
     $app->redirect("/repos/$repo_id/HEAD");
 });
 
