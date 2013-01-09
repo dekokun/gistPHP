@@ -83,6 +83,11 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
     echo '<form method="GET" action="/repos/' . $repo_id . '/edit">';
     echo '<input type="submit" value="編集">';
     echo '</form>';
+    echo '<pre>';
+    foreach($git->getLog() as $value){
+        echo $value . PHP_EOL;
+    }
+    echo '</pre>';
 });
 
 $app->post('/repos', function() use($app, $binary) {
