@@ -61,9 +61,11 @@ $app->put('/repos/:repo_id', function ($repo_id) use($app, $binary) {
     foreach($post_vars as $key => $value) {
         if ($key !== '_METHOD') {
             $file_name = $key;
-            $git->writeFile($file_name, $value, date('Y/m/d H:i:s'));
+            file_put_contents("$repo_dir/$file_name", $value);
+            $git->add(array($file_name));
         }
     }
+    $git->commit(date('Y/m/d H:i:s'));
     $app->redirect("/repos/$repo_id/HEAD");
 });
 
