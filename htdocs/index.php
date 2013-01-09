@@ -73,14 +73,13 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
         $app->redirect('/404');
     }
     $git = Repository::open($repo_dir, $binary, 0755);
-    echo '<pre>';
-    var_dump($git->getCurrentBranch());
-    var_dump($git->getCurrentCommit());
-    var_dump($git->getStatus());
-    var_dump($git->getLog());
-    var_dump($git->showFile('index.txt', $commit_id));
-    echo $repo_id;
-    echo '</pre>';
+    $in_repo_files = glob("$repo_dir/*");
+    foreach($in_repo_files as $file) {
+        $base_name = basename($file);
+        echo '<pre>';
+        echo $git->showFile($base_name, $commit_id);
+        echo '</pre>';
+    }
 });
 
 $app->post('/repos', function() use($app, $binary) {
