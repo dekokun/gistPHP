@@ -34,6 +34,12 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
     var_dump($git->showFile('index.txt', $commit_id));
     echo $repo_id;
     echo '</pre>';
+$app->post('/repos', function() use($app) {
+    $repo_id = 1;
+    while(! @mkdir($repo_dir = REPO_DIR . $repo_id)) {
+        $repo_id += 1;
+    }
+    $app->redirect("/repos/$repo_id/HEAD");
 });
 
 $app->notFound(function () use ($app) {
