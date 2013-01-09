@@ -11,6 +11,7 @@ $app = new Slim(array(
 ));
 
 $app->view(new View());
+$binary = new Binary('/usr/bin/env git');
 
 $app->get('/', function () {
     echo 'hoge';
@@ -20,12 +21,12 @@ $app->get('/repos/:repo_id', function ($repo_id) use($app) {
     $app->redirect("/repos/$repo_id/HEAD");
 });
 
-$app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app) {
+$app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app, $binary) {
     $repo_dir = REPO_DIR . $repo_id;
     if (! file_exists($repo_dir)) {
         $app->redirect('/404');
     }
-    $git = Repository::open($repo_dir, new Binary('/usr/bin/env git'), 0755);
+    $git = Repository::open($repo_dir, $binary, 0755);
     echo '<pre>';
     var_dump($git->getCurrentBranch());
     var_dump($git->getCurrentCommit());
