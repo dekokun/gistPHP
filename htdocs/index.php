@@ -40,11 +40,12 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
 </form>';
 });
 
-$app->post('/repos', function() use($app) {
+$app->post('/repos', function() use($app, $binary) {
     $repo_id = 1;
     while(! @mkdir($repo_dir = REPO_DIR . $repo_id)) {
         $repo_id += 1;
     }
+    $binary->init($repo_dir);
     $app->redirect("/repos/$repo_id/HEAD");
 });
 
