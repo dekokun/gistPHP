@@ -16,6 +16,10 @@ $app->get('/', function () {
     echo 'hoge';
 });
 
+$app->get('/repos/:repo_id', function ($repo_id) use($app) {
+    $app->redirect("/repos/$repo_id/HEAD");
+});
+
 $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app) {
     $repo_dir = REPO_DIR . $repo_id;
     if (! file_exists($repo_dir)) {
