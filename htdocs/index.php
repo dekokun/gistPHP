@@ -88,7 +88,7 @@ $app->post('/repos', function() use($app, $binary) {
         $repo_id += 1;
     }
     $binary->init($repo_dir);
-    $app->redirect("/repos/$repo_id/HEAD");
+    $app->redirect("/repos/$repo_id/edit");
 });
 
 $app->notFound(function () use ($app) {
