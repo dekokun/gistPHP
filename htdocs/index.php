@@ -14,6 +14,9 @@ $app->view(new View());
 $binary = new Binary('/usr/bin/env git');
 
 $app->get('/', function () {
+    echo '<A HREF="" onclick="document.form1.submit();return false;" > 作成</A>
+<form name="form1" method="POST" action="/repos">
+</form>';
     echo 'hoge';
 });
 
@@ -68,9 +71,6 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use($app
     var_dump($git->showFile('index.txt', $commit_id));
     echo $repo_id;
     echo '</pre>';
-    echo '<A HREF="" onclick="document.form1.submit();return false;" > 作成</A>
-<form name="form1" method="POST" action="/repos">
-</form>';
 });
 
 $app->post('/repos', function() use($app, $binary) {
