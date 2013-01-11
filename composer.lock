@@ -20,7 +20,6 @@
             },
             "time": "2012-06-24 11:02:20",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Slim": "Slim/"
@@ -64,7 +63,6 @@
             },
             "time": "2013-01-09 17:25:30",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "TQ\\Git": "src"
