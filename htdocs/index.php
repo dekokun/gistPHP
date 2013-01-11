@@ -79,20 +79,17 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   }
   $git = Repository::open($repo_dir, $binary, 0755);
   $in_repo_files = glob("$repo_dir/*");
+  $files = array();
   foreach ($in_repo_files as $file) {
     $base_name = basename($file);
-    echo '<pre>';
-    echo $git->showFile($base_name, $commit_id);
-    echo '</pre>';
+    $files[] = $git->showFile($base_name, $commit_id);
   }
-  echo '<form method="GET" action="/repos/' . $repo_id . '/edit">';
-  echo '<input type="submit" value="編集">';
-  echo '</form>';
-  echo '<pre>';
-  foreach ($git->getLog() as $value) {
-    echo $value . PHP_EOL;
-  }
-  echo '</pre>';
+  $app->render('repo.php',
+    array(
+      'files'=>$files,
+      'repo_id'=>$repo_id,
+      'logs'=>$git->getLog()
+    ));
 });
 
 $app->post('/repos', function () use ($app, $binary) {
