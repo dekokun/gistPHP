@@ -105,7 +105,7 @@ $app->post('/repos', function () use ($app, $binary) {
 });
 
 $app->notFound(function () use ($app) {
-  echo '<html><body><h1>ページが見つかりません</h1></body></html>';
+  $app->render('404.php');
 });
 
 $app->run();
