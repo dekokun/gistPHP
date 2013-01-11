@@ -6,18 +6,19 @@ use TQ\Git\Repository\Repository;
 
 define('APP_DIR', dirname(__FILE__) . '/../');
 define('REPO_DIR', APP_DIR . 'repos/');
+define('TEMPLATE_DIR', APP_DIR . 'templates/');
 
 $app = new Slim(array(
+    'view' => new View(),
+    'templates.path' => TEMPLATE_DIR
 ));
 
-$app->view(new View());
+View::set_layout('layout.php');
+
 $binary = new Binary('/usr/bin/env git');
 
-$app->get('/', function () {
-    echo '<A HREF="" onclick="document.form1.submit();return false;" > 作成</A>
-<form name="form1" method="POST" action="/repos">
-</form>';
-    echo 'hoge';
+$app->get('/', function () use($app) {
+    $app->render('index.php');
 });
 
 $app->get('/repos/:repo_id', function ($repo_id) use($app) {
