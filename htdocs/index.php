@@ -31,28 +31,23 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $binary) {
   if (!file_exists($repo_dir)) {
     $app->redirect('/404');
   }
-  $in_repo_files = glob("$repo_dir/*");
-  if (count($in_repo_files) > 0) {
-    foreach ($in_repo_files as $file) {
-      $base_name = basename($file);
-      echo '<form method="POST" action="/repos/' . $repo_id . '">';
-      echo '<textarea name="' . $base_name . '">';
-      echo htmlspecialchars($git->showFile($base_name, 'HEAD'));
-      echo '</textarea>';
-      echo '<input type="hidden" name="_METHOD" value="PUT">';
-      echo '<input type="submit" value="Submit">';
-      echo '</form>';
-    }
-  } else {
-    echo '<form method="POST" action="/repos/' . $repo_id . '">';
-    echo '<textarea name="index_txt">';
-    echo '</textarea>';
-    echo '<input type="hidden" name="_METHOD" value="PUT">';
-    echo '<input type="submit" value="Submit">';
-    echo '</form>';
-
+  $in_repo_files = glob($repo_dir . '/*');
+  $files_info = array();
+  foreach($in_repo_files as $file) {
+    $base_name = basename($file);
+    $file_info = array();
+    $file_info['name'] = $base_name;
+    $file_info['contents'] = htmlspecialchars($git->showFile($base_name, 'HEAD'));
+    $files_info[] = $file_info;
   }
-
+  $next_file_count = count($in_repo_files) + 1;
+  $app->render('repo_edit.php',
+    array(
+      'next_file_count'=>$next_file_count,
+      'repo_id'=>$repo_id,
+      'files_info'=>$files_info
+    )
+  );
 });
 
 $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
