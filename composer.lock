@@ -1,5 +1,5 @@
 {
-    "hash": "5ce6b5969edc7b30c7afeec4185d812c",
+    "hash": "cdda1fede36d6826b009baa1107cf87a",
     "packages": [
         {
             "name": "slim/slim",
@@ -47,27 +47,27 @@
         },
         {
             "name": "teqneers/PHP-Stream-Wrapper-for-Git",
-            "version": "v0.2.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git",
-                "reference": "v0.2.2"
+                "reference": "d518a9bc3a0cbeceb8072164b6221b6df873bacf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git/archive/v0.2.2.zip",
-                "reference": "v0.2.2",
+                "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git/archive/d518a9bc3a0cbeceb8072164b6221b6df873bacf.zip",
+                "reference": "d518a9bc3a0cbeceb8072164b6221b6df873bacf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2011-12-30 05:07:48",
+            "time": "2013-01-09 17:25:30",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "TQ\\Git": "src/TQ"
+                    "TQ\\Git": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -94,7 +94,7 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "teqneers/php-stream-wrapper-for-git": 20
+    }
 }
