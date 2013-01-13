@@ -1,7 +1,6 @@
 <?php foreach($files_info as $file_info): ?>
 <form method="POST" action="/repos/<?php echo $repo_id ?>">
   <textarea name="<?php echo $file_info['name'] ?>">
-    <?php echo 'hoge';?>
     <?php echo $file_info['contents'] ?>
   </textarea>
   <input type="hidden" name="_METHOD" value="PUT">
