@@ -13,5 +13,5 @@
 <textarea name="index_txt_<?php $next_file_count?>">
 </textarea>
 <input type="hidden" name="_METHOD" value="PUT">
-<input type="submit" value="Submit">'
+<input type="submit" value="Submit">
 </form>
