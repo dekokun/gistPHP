@@ -1,6 +1,6 @@
 <?php foreach($files as $file): ?>
   <pre>
-    <?php echo $file ?>
+<?php echo $file ?>
   </pre>
 <?php endforeach; ?>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
@@ -8,6 +8,6 @@
 </form>
 <pre>
 <?php foreach($logs as $log): ?>
-  <?php echo $log ?>
+<?php echo $log ?>
 <?php endforeach; ?>
 </pre>
