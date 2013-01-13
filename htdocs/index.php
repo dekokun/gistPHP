@@ -40,10 +40,8 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $binary) {
     $file_info['contents'] = htmlspecialchars($git->showFile($base_name, 'HEAD'));
     $files_info[] = $file_info;
   }
-  $next_file_count = count($in_repo_files) + 1;
   $app->render('repo_edit.php',
     array(
-      'next_file_count'=>$next_file_count,
       'repo_id'=>$repo_id,
       'files_info'=>$files_info
     )
@@ -55,11 +53,17 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
   $git = Repository::open($repo_dir, $binary, 0755);
   $post_vars = $app->request()->post();
   foreach ($post_vars as $key => $value) {
-    if ($key !== '_METHOD') {
-      $file_name = $key;
-      file_put_contents("$repo_dir/$file_name", $value);
-      $git->add(array($file_name));
+    if ($key === '_METHOD') {
+      continue;
     }
+    if ($key === 'new' && $value !== '') {
+      $next_file_count = count(glob("$repo_dir/*")) + 1;
+      $file_name = "$repo_dir/index_txt_{$next_file_count}";
+    } else if($key !== 'new') {
+      $file_name = "$repo_dir/$key";
+    }
+    file_put_contents($file_name, $value);
+    $git->add(array($file_name));
   }
   if ($git->isDirty()) {
     $git->commit(date('Y/m/d H:i:s'));

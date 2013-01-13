@@ -8,7 +8,7 @@
   </fieldset>
   <fieldset>
     <legend>ファイル追加</legend>
-<textarea name="index_txt_<?php echo $next_file_count?>">
+<textarea name="new">
 </textarea>
   </fieldset>
 <input type="submit" value="Submit">
