@@ -74,6 +74,9 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   }
   $git = Repository::open($repo_dir, $binary, 0755);
   $in_repo_files = glob("$repo_dir/*");
+  if (count($in_repo_files) === 0) {
+    $app->redirect("/repos/$repo_id/edit");
+  }
   $files = array();
   foreach ($in_repo_files as $file) {
     $base_name = basename($file);
