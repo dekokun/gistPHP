@@ -7,7 +7,7 @@
 <?php endforeach; ?>
 ファイル追加
 <form method="POST" action="/repos/<?php echo $repo_id?>">
-<textarea name="index_txt_<?php $next_file_count?>">
+<textarea name="index_txt_<?php echo $next_file_count?>">
 </textarea>
 <input type="hidden" name="_METHOD" value="PUT">
 <input type="submit" value="Submit">
