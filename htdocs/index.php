@@ -52,6 +52,7 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
   $repo_dir = REPO_DIR . $repo_id;
   $git = Repository::open($repo_dir, $binary, 0755);
   $post_vars = $app->request()->post();
+  $add_list = array();
   foreach ($post_vars as $key => $value) {
     if ($key === '_METHOD') {
       continue;
@@ -64,7 +65,9 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
     }
     file_put_contents($file_name, $value);
     $git->add(array($file_name));
+    $add_list[] = $file_name;
   }
+  $git->add($add_list);
   if ($git->isDirty()) {
     $git->commit(date('Y/m/d H:i:s'));
   }
