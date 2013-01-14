@@ -14,7 +14,7 @@ class BookShelf
     if (!file_exists($root_dir . '/.git')) {
       $binary->init($root_dir);
     }
-    $this->git_wrapper = $git_wrapper::open($root_dir, $binary, 0755);
+    $this->root_git = $git_wrapper::open($root_dir, $binary, 0755);
     $this->books = array_flip(array_map('basename', glob($root_dir . '/*')));
     $this->place = substr($root_dir, -1) === DIRECTORY_SEPARATOR ? $root_dir : $root_dir . DIRECTORY_SEPARATOR;
     $this->binary = $binary;
