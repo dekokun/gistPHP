@@ -54,13 +54,13 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
   $post_vars = $app->request()->post();
   $add_list = array();
   foreach ($post_vars as $key => $value) {
-    if ($key === '_METHOD') {
+    if ($key === '_METHOD' || ($key === 'new' && $value === '')) {
       continue;
     }
-    if ($key === 'new' && $value !== '') {
+    if ($key === 'new') {
       $next_file_count = count(glob("$repo_dir/*")) + 1;
       $file_name = "$repo_dir/index_txt_{$next_file_count}";
-    } else if($key !== 'new') {
+    } else {
       $file_name = "$repo_dir/$key";
     }
     file_put_contents($file_name, $value);
