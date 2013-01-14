@@ -1,5 +1,5 @@
 <?php foreach($files as $file): ?>
-<pre class="prettyprint"><?php echo h($file) ?></pre>
+<pre class="prettyprint linenums"><?php echo h($file) ?></pre>
 <?php endforeach; ?>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
   <input type="submit" value="編集">
