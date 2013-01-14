@@ -79,26 +79,27 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
   $app->redirect("/repos/$repo_id/HEAD");
 });
 
-$app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($app, $binary) {
-  $repo_dir = REPO_DIR . $repo_id;
-  if (!file_exists($repo_dir)) {
-    $app->redirect('/404');
-  }
-  $git = Repository::open($repo_dir, $binary, 0755);
-  $in_repo_files = glob("$repo_dir/*");
-  if (count($in_repo_files) === 0) {
-    $app->redirect("/repos/$repo_id/edit");
-  }
-  $files = array();
-  foreach ($in_repo_files as $file) {
-    $base_name = basename($file);
-    $files[] = $git->showFile($base_name, $commit_id);
-  }
+$app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($app, $bookshelf) {
+//  $repo_dir = REPO_DIR . $repo_id;
+//  if (!file_exists($repo_dir)) {
+//    $app->redirect('/404');
+//  }
+//  $git = Repository::open($repo_dir, $binary, 0755);
+//  $in_repo_files = glob("$repo_dir/*");
+//  if (count($in_repo_files) === 0) {
+//    $app->redirect("/repos/$repo_id/edit");
+//  }
+//  $files = array();
+//  foreach ($in_repo_files as $file) {
+//    $base_name = basename($file);
+//    $files[] = $git->showFile($base_name, $commit_id);
+//  }
+  $book = $bookshelf->showBook($repo_id, $commit_id);
   $app->render('repo.php',
     array(
-      'files'=>$files,
+      'files'=>$book->getPages(),
       'repo_id'=>$repo_id,
-      'logs'=>$git->getLog()
+      'logs'=>$book->getHistory()
     ));
 });
 
