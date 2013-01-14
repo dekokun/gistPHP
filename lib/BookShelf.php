@@ -1,14 +1,16 @@
 <?php
 
 
-class BookShelf {
+class BookShelf
+{
   protected $root_git;
   protected $books;
   protected $place;
   protected $binary;
 
-  public function __construct($root_dir, $repo_class_name, $binary) {
-    if(! file_exists($root_dir . '/.git')) {
+  public function __construct($root_dir, $repo_class_name, $binary)
+  {
+    if (!file_exists($root_dir . '/.git')) {
       $binary->init($root_dir);
     }
     $this->root_git = $repo_class_name::open($root_dir, $binary, 0755);
@@ -17,7 +19,8 @@ class BookShelf {
     $this->binary = $binary;
   }
 
-  public function makeNextBook() {
+  public function makeNextBook()
+  {
     $now_max_book_id = max(array_map('basename', $this->books));
     while (!@mkdir($book_place = $this->place . '/' . $now_max_book_id)) {
       $now_max_book_id += 1;
