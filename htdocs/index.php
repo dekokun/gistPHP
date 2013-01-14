@@ -20,6 +20,7 @@ $app = new Slim(array(
 View::set_layout('layout.php');
 
 $binary = new Binary('/usr/bin/env git');
+$bookshelf = new BookShelf(REPO_DIR, 'TQ\Git\Repository\Repository', $binary);
 
 $app->get('/', function () use ($app) {
   $app->render('index.php');
@@ -101,13 +102,9 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
     ));
 });
 
-$app->post('/repos', function () use ($app, $binary) {
-  $now_max_repo_id = max(array_map('basename', glob(REPO_DIR . '*')));
-  while (!@mkdir($repo_dir = REPO_DIR . $now_max_repo_id)) {
-    $now_max_repo_id += 1;
-  }
-  $binary->init($repo_dir);
-  $app->redirect("/repos/$now_max_repo_id/edit");
+$app->post('/repos', function () use ($app, $bookshelf) {
+  $book_id = $bookshelf->makeNextBook();
+  $app->redirect("/repos/$book_id/edit");
 });
 
 $app->notFound(function () use ($app) {
