@@ -80,24 +80,18 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
 });
 
 $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($app, $bookshelf) {
-//  $repo_dir = REPO_DIR . $repo_id;
-//  if (!file_exists($repo_dir)) {
-//    $app->redirect('/404');
-//  }
-//  $git = Repository::open($repo_dir, $binary, 0755);
-//  $in_repo_files = glob("$repo_dir/*");
-//  if (count($in_repo_files) === 0) {
-//    $app->redirect("/repos/$repo_id/edit");
-//  }
-//  $files = array();
-//  foreach ($in_repo_files as $file) {
-//    $base_name = basename($file);
-//    $files[] = $git->showFile($base_name, $commit_id);
-//  }
-  $book = $bookshelf->showBook($repo_id, $commit_id);
+  try {
+    $book = $bookshelf->showBook($repo_id, $commit_id);
+  } catch(InvalidArgumentException $e) {
+    $app->redirect('/404');
+  }
+  $pages = $book->getPages();
+  if(count($pages) === 0) {
+    $app->redirect("/repos/$repo_id/edit");
+  }
   $app->render('repo.php',
     array(
-      'files'=>$book->getPages(),
+      'files'=>$pages,
       'repo_id'=>$repo_id,
       'logs'=>$book->getHistory()
     ));
