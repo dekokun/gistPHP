@@ -103,7 +103,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
 });
 
 $app->post('/repos', function () use ($app, $bookshelf) {
-  $book_id = $bookshelf->makeNextBook();
+  $book_id = $bookshelf->makeBook();
   $app->redirect("/repos/$book_id/edit");
 });
 

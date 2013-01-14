@@ -19,7 +19,7 @@ class BookShelf
     $this->binary = $binary;
   }
 
-  public function makeNextBook()
+  public function makeBook()
   {
     $now_max_book_id = max(array_keys($this->books)) + 1;
     while (!@mkdir($book_place = $this->place . '/' . $now_max_book_id)) {
