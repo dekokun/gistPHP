@@ -31,6 +31,7 @@ class View extends Slim_View
 
   public function _render_layout($_html)
   {
+    extract($this->data);
     if (self::$_layout !== NULL) {
       $layout_path = $this->getTemplatesDirectory() . '/' . ltrim(self::$_layout, '/');
       if (!file_exists($layout_path)) {
