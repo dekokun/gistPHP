@@ -1,7 +1,5 @@
 <?php foreach($files as $file): ?>
-  <pre>
-<?php echo $file ?>
-  </pre>
+<pre><?php echo $file ?></pre>
 <?php endforeach; ?>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
   <input type="submit" value="編集">
