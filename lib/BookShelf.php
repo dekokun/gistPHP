@@ -15,14 +15,14 @@ class BookShelf
     }
     $this->root_git = $repo_class_name::open($root_dir, $binary, 0755);
     $this->books = array_flip(array_map('basename', glob($root_dir . '/*')));
-    $this->place = $root_dir;
+    $this->place = substr($root_dir, -1) === DIRECTORY_SEPARATOR ? $root_dir : $root_dir . DIRECTORY_SEPARATOR;
     $this->binary = $binary;
   }
 
   public function makeBook()
   {
     $now_max_book_id = max(array_keys($this->books)) + 1;
-    while (!@mkdir($book_place = $this->place . '/' . $now_max_book_id)) {
+    while (!@mkdir($book_place = $this->place . $now_max_book_id)) {
       $now_max_book_id += 1;
     }
     $this->binary->init($book_place);
