@@ -7,13 +7,14 @@ class BookShelf
   protected $books;
   protected $place;
   protected $binary;
+  protected $git_wrapper;
 
   public function __construct($root_dir, $git_wrapper, $binary)
   {
     if (!file_exists($root_dir . '/.git')) {
       $binary->init($root_dir);
     }
-    $this->root_git = $git_wrapper::open($root_dir, $binary, 0755);
+    $this->git_wrapper = $git_wrapper::open($root_dir, $binary, 0755);
     $this->books = array_flip(array_map('basename', glob($root_dir . '/*')));
     $this->place = substr($root_dir, -1) === DIRECTORY_SEPARATOR ? $root_dir : $root_dir . DIRECTORY_SEPARATOR;
     $this->binary = $binary;
