@@ -13,7 +13,7 @@
 <script type="text/javascript">
   $(function(){
     $('pre').css({
-      'overflow-x': 'scroll',
+      'overflow': 'auto',
       'background-color': '#f6f6f6',
       'border': '1px dotted #ccc',
       'padding': '0.8em'
