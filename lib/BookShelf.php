@@ -21,7 +21,7 @@ class BookShelf
 
   public function makeNextBook()
   {
-    $now_max_book_id = max(array_map('basename', $this->books));
+    $now_max_book_id = max(array_map('basename', $this->books)) + 1;
     while (!@mkdir($book_place = $this->place . '/' . $now_max_book_id)) {
       $now_max_book_id += 1;
     }
