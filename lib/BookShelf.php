@@ -14,14 +14,14 @@ class BookShelf
       $binary->init($root_dir);
     }
     $this->root_git = $repo_class_name::open($root_dir, $binary, 0755);
-    $this->books = glob($root_dir . '/*');
+    $this->books = array_flip(array_map('basename', glob($root_dir . '/*')));
     $this->place = $root_dir;
     $this->binary = $binary;
   }
 
   public function makeNextBook()
   {
-    $now_max_book_id = max(array_map('basename', $this->books)) + 1;
+    $now_max_book_id = max(array_keys($this->books)) + 1;
     while (!@mkdir($book_place = $this->place . '/' . $now_max_book_id)) {
       $now_max_book_id += 1;
     }
