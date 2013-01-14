@@ -98,12 +98,12 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
 });
 
 $app->post('/repos', function () use ($app, $binary) {
-  $repo_id = 1;
-  while (!@mkdir($repo_dir = REPO_DIR . $repo_id)) {
-    $repo_id += 1;
+  $now_max_repo_id = max(array_map('basename', glob(REPO_DIR . '*')));
+  while (!@mkdir($repo_dir = REPO_DIR . $now_max_repo_id)) {
+    $now_max_repo_id += 1;
   }
   $binary->init($repo_dir);
-  $app->redirect("/repos/$repo_id/edit");
+  $app->redirect("/repos/$now_max_repo_id/edit");
 });
 
 $app->notFound(function () use ($app) {
