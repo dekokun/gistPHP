@@ -87,7 +87,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   $files = array();
   foreach ($in_repo_files as $file) {
     $base_name = basename($file);
-    $files[] = $git->showFile($base_name, $commit_id);
+    $files[] = htmlspecialchars($git->showFile($base_name, $commit_id));
   }
   $app->render('repo.php',
     array(
