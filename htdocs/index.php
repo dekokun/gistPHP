@@ -41,7 +41,7 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $binary) {
     $base_name = basename($file);
     $file_info = array();
     $file_info['name'] = $base_name;
-    $file_info['contents'] = h($git->showFile($base_name, 'HEAD'));
+    $file_info['contents'] = $git->showFile($base_name, 'HEAD');
     $files_info[] = $file_info;
   }
   $app->render('repo_edit.php',
@@ -91,7 +91,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   $files = array();
   foreach ($in_repo_files as $file) {
     $base_name = basename($file);
-    $files[] = h($git->showFile($base_name, $commit_id));
+    $files[] = $git->showFile($base_name, $commit_id);
   }
   $app->render('repo.php',
     array(
