@@ -14,10 +14,8 @@ class History implements Iterator
       foreach (explode(PHP_EOL, $log) as $line) {
         if (strpos($line, 'commit') === 0) {
           if (!empty($commit)) {
-            $commit['message'] = $message;
             array_push($history, $commit);
             unset($commit);
-            $message = '';
           }
           $commit['hash'] = trim(substr($line, strlen('commit')));
           $commit['shorthash'] = substr($commit['hash'], 0, 8);
@@ -30,9 +28,16 @@ class History implements Iterator
         } else if (strpos($line, 'Commit:') === 0) {
           $commit['committer'] = trim(substr($line, strlen('Commit:')));
         } else {
-          $message .= $line;
+          if(isset($commit['message'])) {
+            $commit['message'] .= $line;
+          } else {
+            $commit['message'] = $line;
+          }
         }
       }
+    }
+    if(!empty($commit)) {
+      array_push($history, $commit);
     }
     $this->history = $history;
     $this->position = 0;
