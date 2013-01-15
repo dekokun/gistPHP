@@ -2,26 +2,25 @@
 
 class Book {
   protected $place;
-  protected $version;
   protected $git_wrapper;
+  protected $name;
 
-  public function __construct($book_place, $version, $git_wrapper)
+  public function __construct($book_place, $git_wrapper)
   {
     if (!static::isExist($book_place)) {
       throw new InvalidArgumentException('The book is not exists.');
     }
-    $this->place = $book_place;
-    $this->version = $version;
+    $this->place = substr($book_place, -1) === DIRECTORY_SEPARATOR ? $book_place : $book_place . DIRECTORY_SEPARATOR;
+    $files = glob($this->place . '*');
+    if (count($files) === 0) {
+      throw new InvalidArgumentException('The page is not exists.');
+    }
+    $this->name = basename($files[0]);
     $this->git_wrapper = $git_wrapper;
   }
 
-  public function getPages() {
-    $page_names = $this->git_wrapper->listDirectory($this->place, $this->version);
-    $pages = array();
-    foreach($page_names as $page_name) {
-      $pages[$page_name] = $this->git_wrapper->showFile($page_name, $this->version);
-    }
-    return $pages;
+  public function getPage($version) {
+    return $this->git_wrapper->showFile($this->name, $version);
   }
 
   public function getHistory() {

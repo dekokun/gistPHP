@@ -37,18 +37,18 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $binary) {
     $app->redirect('/404');
   }
   $in_repo_files = glob($repo_dir . '/*');
-  $files_info = array();
-  foreach($in_repo_files as $file) {
+  $file_info = array();
+  if(count($in_repo_files) !== 0) {
+    $file = $in_repo_files[0];
     $base_name = basename($file);
     $file_info = array();
     $file_info['name'] = $base_name;
     $file_info['contents'] = $git->showFile($base_name, 'HEAD');
-    $files_info[] = $file_info;
   }
   $app->render('repo_edit.php',
     array(
       'repo_id'=>$repo_id,
-      'files_info'=>$files_info
+      'file_info'=>$file_info
     )
   );
 });
@@ -57,22 +57,13 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
   $repo_dir = REPO_DIR . $repo_id;
   $git = Repository::open($repo_dir, $binary, 0755);
   $post_vars = $app->request()->post();
-  $add_list = array();
   foreach ($post_vars as $key => $value) {
-    if ($key === '_METHOD' || ($key === 'new' && $value === '')) {
-      continue;
+    if ($key === 'contents') {
+      $file_name = "$repo_dir/index_txt";
+      file_put_contents($file_name, $value);
+      $git->add(array($file_name));
     }
-    if ($key === 'new') {
-      $next_file_count = count(glob("$repo_dir/*")) + 1;
-      $file_name = "$repo_dir/index_txt_{$next_file_count}";
-    } else {
-      $file_name = "$repo_dir/$key";
-    }
-    file_put_contents($file_name, $value);
-    $git->add(array($file_name));
-    $add_list[] = $file_name;
   }
-  $git->add($add_list);
   if ($git->isDirty()) {
     $git->commit(date('Y/m/d H:i:s'));
   }
@@ -85,13 +76,14 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   } catch(InvalidArgumentException $e) {
     $app->redirect('/404');
   }
-  $pages = $book->getPages();
-  if(count($pages) === 0) {
-    $app->redirect("/repos/$repo_id/edit");
+  try {
+    $page = $book->getPage($commit_id);
+  } catch(InvalidArgumentException $e) {
+    $app->redirect('/404');
   }
   $app->render('repo.php',
     array(
-      'files'=>$pages,
+      'file'=>$page,
       'repo_id'=>$repo_id,
       'logs'=>$book->getHistory(),
       'readonly'=>true

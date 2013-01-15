@@ -32,11 +32,11 @@ class BookShelf
     return $now_max_book_id;
   }
 
-  public function findBook($book_id, $version){
+  public function findBook($book_id){
     $book_place = $this->place . $book_id;
     // パースエラーになるため一時的にローカル変数に格納
     $git_wrapper = $this->git_wrapper;
     $git = $git_wrapper::open($book_place, $this->binary);
-    return new Book($book_place, $version, $git);
+    return new Book($book_place, $git);
   }
 }
