@@ -1,4 +1,4 @@
-<textarea><?php echo h($file) ?></textarea>
+<textarea id="code"><?php echo h($file) ?></textarea>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
   <input type="submit" value="編集">
 </form>

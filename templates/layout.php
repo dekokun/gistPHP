@@ -8,10 +8,9 @@
 </head>
 <body>
 <?php echo $_html ?>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript " src="/codemirror/codemirror-compressed.js"></script>
 <script>
-  var textareas = document.getElementsByTagName("textarea");
+  var code = document.getElementById("code");
   var conf = {
     <?php echo (isset($mode) ? "mode: " . $mode . ',': '') ?>
     <?php echo ((isset($readonly) && $readonly) ? "readOnly: true" . ',': '') ?>
@@ -19,11 +18,7 @@
     showCursorWhenSelecting: true,
     smartIndent: false,
   };
-  var max = textareas.length;
-  for(var i = 0; i < max; i++) {
-    var newtextareas = jQuery.extend(true, {}, textareas);;
-    CodeMirror.fromTextArea(newtextareas[i * 2], conf);
-  }
+  CodeMirror.fromTextArea(code, conf);
 
 </script>
 </body>
