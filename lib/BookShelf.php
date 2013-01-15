@@ -11,6 +11,9 @@ class BookShelf
 
   public function __construct($root_dir, $git_wrapper, $binary)
   {
+    if (! is_writable($root_dir)) {
+      throw new RuntimeException('Not writable repo dir: ' . $root_dir);
+    }
     if (!file_exists($root_dir . '/.git')) {
       $binary->init($root_dir);
     }
