@@ -20,10 +20,14 @@ class History implements Iterator
             $message = '';
           }
           $commit['hash'] = substr($line, strlen('commit'));
-        } else if (strpos($line, 'Author') === 0) {
+        } else if (strpos($line, 'Author:') === 0) {
           $commit['author'] = substr($line, strlen('Author:'));
-        } else if (strpos($line, 'Date') === 0) {
-          $commit['date'] = substr($line, strlen('Date:'));
+        } else if (strpos($line, 'AuthorDate:') === 0) {
+          $commit['authordate'] = substr($line, strlen('AuthorDate:'));
+        } else if (strpos($line, 'CommitDate:') === 0) {
+          $commit['commitdate'] = substr($line, strlen('CommitDate:'));
+        } else if (strpos($line, 'Commit:') === 0) {
+          $commit['committer'] = substr($line, strlen('Commit:'));
         } else {
           $message .= $line;
         }
@@ -53,7 +57,6 @@ class History implements Iterator
   public function next()
   {
     $this->position += 1;
-    return $this->history[$this->position];
   }
 
   /**
