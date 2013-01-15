@@ -19,15 +19,16 @@ class History implements Iterator
             unset($commit);
             $message = '';
           }
-          $commit['hash'] = substr($line, strlen('commit'));
+          $commit['hash'] = trim(substr($line, strlen('commit')));
+          $commit['shorthash'] = substr($commit['hash'], 0, 8);
         } else if (strpos($line, 'Author:') === 0) {
-          $commit['author'] = substr($line, strlen('Author:'));
+          $commit['author'] = trim(substr($line, strlen('Author:')));
         } else if (strpos($line, 'AuthorDate:') === 0) {
-          $commit['authordate'] = substr($line, strlen('AuthorDate:'));
+          $commit['authordate'] = trim(substr($line, strlen('AuthorDate:')));
         } else if (strpos($line, 'CommitDate:') === 0) {
-          $commit['commitdate'] = substr($line, strlen('CommitDate:'));
+          $commit['commitdate'] = trim(substr($line, strlen('CommitDate:')));
         } else if (strpos($line, 'Commit:') === 0) {
-          $commit['committer'] = substr($line, strlen('Commit:'));
+          $commit['committer'] = trim(substr($line, strlen('Commit:')));
         } else {
           $message .= $line;
         }
