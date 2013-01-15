@@ -16,7 +16,7 @@ class Book {
   }
 
   public function getPages() {
-    $page_names = array_map('basename', glob($this->place . '/*'));
+    $page_names = $this->git_wrapper->listDirectory($this->place, $this->version);
     $pages = array();
     foreach($page_names as $page_name) {
       $pages[$page_name] = $this->git_wrapper->showFile($page_name, $this->version);
