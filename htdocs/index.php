@@ -93,7 +93,8 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
     array(
       'files'=>$pages,
       'repo_id'=>$repo_id,
-      'logs'=>$book->getHistory()
+      'logs'=>$book->getHistory(),
+      'readonly'=>true
     ));
 });
 

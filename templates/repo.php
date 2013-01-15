@@ -1,11 +1,13 @@
 <?php foreach($files as $file): ?>
-<pre class="prettyprint linenums"><?php echo h($file) ?></pre>
+  <div>
+<textarea><?php echo h($file) ?></textarea>
+    </div>
 <?php endforeach; ?>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
   <input type="submit" value="編集">
 </form>
-<pre class="prettyprint">
+<textarea class="prettyprint">
 <?php foreach($logs as $log): ?>
 <?php echo $log ?>
 <?php endforeach; ?>
-</pre>
+</textarea>
