@@ -7,10 +7,10 @@ class Book {
 
   public function __construct($book_place, $git_wrapper)
   {
-    if (!static::isExist($book_place)) {
+    $this->place = substr($book_place, -1) === DIRECTORY_SEPARATOR ? $book_place : $book_place . DIRECTORY_SEPARATOR;
+    if (!static::isExist($this->place)) {
       throw new InvalidArgumentException('The book is not exists.');
     }
-    $this->place = substr($book_place, -1) === DIRECTORY_SEPARATOR ? $book_place : $book_place . DIRECTORY_SEPARATOR;
     $files = glob($this->place . '*');
     if (count($files) === 0) {
       throw new InvalidArgumentException('The page is not exists.');
