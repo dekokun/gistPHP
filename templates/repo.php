@@ -4,6 +4,6 @@
 </form>
 <textarea class="prettyprint">
 <?php foreach($logs as $log): ?>
-<?php echo $log ?>
+<?php var_dump($log) ?>
 <?php endforeach; ?>
 </textarea>
