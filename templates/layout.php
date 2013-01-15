@@ -17,6 +17,7 @@
     <?php echo ((isset($readonly) && $readonly) ? "readOnly: true" . ',': '') ?>
     lineNumbers: true,
     showCursorWhenSelecting: true,
+    smartIndent: false,
   };
   var max = textareas.length;
   for(var i = 0; i < max; i++) {
