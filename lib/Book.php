@@ -28,7 +28,7 @@ class Book {
   }
 
   static protected function isExist($place) {
-    return file_exists($place);
+    return file_exists($place . '.git');
   }
 }
 
