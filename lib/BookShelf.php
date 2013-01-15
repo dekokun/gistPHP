@@ -11,6 +11,9 @@ class BookShelf
 
   public function __construct($root_dir, $git_wrapper, $binary)
   {
+    if (! is_writable($root_dir)) {
+      throw new RuntimeException('Not writable repo dir: ' . $root_dir);
+    }
     if (!file_exists($root_dir . '/.git')) {
       $binary->init($root_dir);
     }
@@ -32,11 +35,11 @@ class BookShelf
     return $now_max_book_id;
   }
 
-  public function showBook($book_id, $version){
+  public function findBook($book_id){
     $book_place = $this->place . $book_id;
     // パースエラーになるため一時的にローカル変数に格納
     $git_wrapper = $this->git_wrapper;
     $git = $git_wrapper::open($book_place, $this->binary);
-    return new Book($book_place, $version, $git);
+    return new Book($book_place, $git);
   }
 }

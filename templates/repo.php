@@ -1,11 +1,9 @@
-<?php foreach($files as $file): ?>
-<pre class="prettyprint linenums"><?php echo h($file) ?></pre>
-<?php endforeach; ?>
+<textarea id="code"><?php echo h($file) ?></textarea>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
   <input type="submit" value="編集">
 </form>
-<pre class="prettyprint">
-<?php foreach($logs as $log): ?>
-<?php echo $log ?>
+<?php foreach($history as $commit): ?>
+<div>
+  <p><a href="/repos/<?php echo $repo_id . '/' . $commit['hash'] ?>"><?php echo $commit['shorthash'] ?></a><?php echo $commit['message'] ?></p>
+</div>
 <?php endforeach; ?>
-</pre>
