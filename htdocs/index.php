@@ -85,7 +85,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
     array(
       'file'=>$page,
       'repo_id'=>$repo_id,
-      'logs'=>$book->getHistory(),
+      'history'=>$book->getHistory(),
       'readonly'=>true
     ));
 });
