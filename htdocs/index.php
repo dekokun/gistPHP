@@ -65,7 +65,7 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
     }
   }
   if ($git->isDirty()) {
-    $git->commit(date('Y/m/d H:i:s'));
+    $git->commit(trim($post_vars['comment']) === '' ? date('Y/m/d H:i:s') : $post_vars['comment']);
   }
   $app->redirect("/repos/$repo_id/HEAD");
 });
