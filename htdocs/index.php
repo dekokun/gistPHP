@@ -44,7 +44,7 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
   $app->render('repo_edit.php',
     array(
       'repo_id'=>$repo_id,
-      'file_info'=>array('contents'=>$page)
+      'file'=>$page
     )
   );
 });
