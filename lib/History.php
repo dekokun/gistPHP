@@ -9,7 +9,6 @@ class History implements Iterator
   public function __construct($logs)
   {
     $history = array();
-    $message = '';
     foreach ($logs as $log) {
       foreach (explode(PHP_EOL, $log) as $line) {
         if (strpos($line, 'commit') === 0) {
