@@ -68,7 +68,7 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
 
 $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($app, $bookshelf) {
   try {
-    $book = $bookshelf->findBook($repo_id, $commit_id);
+    $book = $bookshelf->findBook($repo_id);
   } catch(InvalidArgumentException $e) {
     $app->redirect('/404');
   }
