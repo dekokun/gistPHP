@@ -30,25 +30,21 @@ $app->get('/repos/:repo_id', function ($repo_id) use ($app) {
   $app->redirect("/repos/$repo_id/HEAD");
 });
 
-$app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $binary) {
-  $repo_dir = REPO_DIR . $repo_id;
-  $git = Repository::open($repo_dir, $binary, 0755);
-  if (!file_exists($repo_dir)) {
+$app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
+  try {
+    $book = $bookshelf->findBook($repo_id);
+  } catch(InvalidArgumentException $e) {
     $app->redirect('/404');
   }
-  $in_repo_files = glob($repo_dir . '/*');
-  $file_info = array();
-  if(count($in_repo_files) !== 0) {
-    $file = $in_repo_files[0];
-    $base_name = basename($file);
-    $file_info = array();
-    $file_info['name'] = $base_name;
-    $file_info['contents'] = $git->showFile($base_name, 'HEAD');
+  try {
+    $page = $book->getPage('HEAD');
+  } catch(InvalidArgumentException $e) {
+    $app->redirect('/404');
   }
   $app->render('repo_edit.php',
     array(
       'repo_id'=>$repo_id,
-      'file_info'=>$file_info
+      'file_info'=>array('contents'=>$page)
     )
   );
 });
