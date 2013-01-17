@@ -1,6 +1,5 @@
 <?php
-class Commit
-{
+class Commit {
 
   private $commit;
 
@@ -21,7 +20,7 @@ class Commit
       } else if (strpos($line, 'Commit:') === 0) {
         $commit['committer'] = trim(substr($line, strlen('Commit:')));
       } else {
-        if(isset($commit['message'])) {
+        if (isset($commit['message'])) {
           $commit['message'] .= $line;
         } else {
           $commit['message'] = $line;

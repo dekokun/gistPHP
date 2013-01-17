@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title><?php echo isset($title) ? $title . ' - '  : ''?>gistphp</title>
+  <title><?php echo isset($title) ? $title . ' - ' : ''?>gistphp</title>
   <link href="http://codemirror.net/lib/codemirror.css" type="text/css" rel="stylesheet"></link>
   <link href="/codemirror/codemirror.css" type="text/css" rel="stylesheet"></link>
 </head>

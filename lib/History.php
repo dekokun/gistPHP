@@ -1,18 +1,16 @@
 <?php
 
-class History implements Iterator
-{
+class History implements Iterator {
 
   protected $history;
   protected $position;
 
-  private function __construct($history)
-  {
+  private function __construct($history) {
     $this->position = 0;
-    $this->history = $history;
+    $this->history  = $history;
   }
 
-  public static function parse ($logs) {
+  public static function parse($logs) {
     $history = array();
     foreach ($logs as $log) {
       array_push($history, Commit::parse($log));
@@ -26,8 +24,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.current.php
    * @return mixed Can return any type.
    */
-  public function current()
-  {
+  public function current() {
     return $this->history[$this->position];
   }
 
@@ -37,8 +34,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.next.php
    * @return void Any returned value is ignored.
    */
-  public function next()
-  {
+  public function next() {
     $this->position += 1;
   }
 
@@ -48,8 +44,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.key.php
    * @return mixed scalar on success, or null on failure.
    */
-  public function key()
-  {
+  public function key() {
     return $this->position;
   }
 
@@ -60,8 +55,7 @@ class History implements Iterator
    * @return boolean The return value will be casted to boolean and then evaluated.
    * Returns true on success or false on failure.
    */
-  public function valid()
-  {
+  public function valid() {
     return isset($this->history[$this->position]);
   }
 
@@ -71,8 +65,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.rewind.php
    * @return void Any returned value is ignored.
    */
-  public function rewind()
-  {
+  public function rewind() {
     $this->position = 0;
   }
 }

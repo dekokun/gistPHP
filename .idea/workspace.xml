@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21e140e8-5ab0-42b4-93e7-8869abeafcf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gistphp.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Book.php" afterPath="$PROJECT_DIR$/lib/Book.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/BookShelf.php" afterPath="$PROJECT_DIR$/lib/BookShelf.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Commit.php" afterPath="$PROJECT_DIR$/lib/Commit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/History.php" afterPath="$PROJECT_DIR$/lib/History.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/View.php" afterPath="$PROJECT_DIR$/lib/View.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/htdocs/index.php" afterPath="$PROJECT_DIR$/htdocs/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/layout.php" afterPath="$PROJECT_DIR$/templates/layout.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/repo.php" afterPath="$PROJECT_DIR$/templates/repo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/repo_edit.php" afterPath="$PROJECT_DIR$/templates/repo_edit.php" />
     </list>
     <ignored path="gistPHP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,7 +98,7 @@
           <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="64" column="2" selection-start="1711" selection-end="1711" vertical-scroll-proportion="-5.0">
+                <state line="28" column="6" selection-start="695" selection-end="695" vertical-scroll-proportion="-4.875">
                   <folding />
                 </state>
               </provider>
@@ -111,16 +107,52 @@
           <file leaf-file-name="Book.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/Book.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="24" selection-start="774" selection-end="774" vertical-scroll-proportion="-16.25">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Commit.php" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="BookShelf.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/BookShelf.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="404.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/404.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/index.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="4" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="-2.5">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="layout.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/layout.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="-0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Commit.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/Commit.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="2.25">
                   <folding />
                 </state>
               </provider>
@@ -129,7 +161,16 @@
           <file leaf-file-name="repo.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/repo.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="118" selection-start="324" selection-end="324" vertical-scroll-proportion="-3.75">
+                <state line="0" column="52" selection-start="52" selection-end="52" vertical-scroll-proportion="-0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="repo_edit.php" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/repo_edit.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="25" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -139,10 +180,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="History.php" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="History.php" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/History.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="62" column="24" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.516129">
+                <state line="60" column="0" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.6082949">
                   <folding />
                 </state>
               </provider>
@@ -177,14 +218,14 @@
         <option value="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" />
         <option value="$PROJECT_DIR$/htdocs/css/prettify.css" />
         <option value="$PROJECT_DIR$/lib/Repos.php" />
-        <option value="$PROJECT_DIR$/lib/BookShelf.php" />
         <option value="$PROJECT_DIR$/templates/layout.php" />
         <option value="$PROJECT_DIR$/templates/repo_edit.php" />
-        <option value="$PROJECT_DIR$/htdocs/index.php" />
-        <option value="$PROJECT_DIR$/lib/Book.php" />
         <option value="$PROJECT_DIR$/templates/repo.php" />
         <option value="$PROJECT_DIR$/lib/Commit.php" />
         <option value="$PROJECT_DIR$/lib/History.php" />
+        <option value="$PROJECT_DIR$/htdocs/index.php" />
+        <option value="$PROJECT_DIR$/lib/Book.php" />
+        <option value="$PROJECT_DIR$/lib/BookShelf.php" />
       </list>
     </option>
   </component>
@@ -637,13 +678,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/htdocs/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Book.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="47" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
@@ -673,68 +707,77 @@
         <state line="10" column="0" selection-start="197" selection-end="197" vertical-scroll-proportion="0.34246576" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/teqneers/PHP-Stream-Wrapper-for-Git/src/TQ/Git/Repository/Repository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="0" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.44701988" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.php">
+    <entry file="file://$PROJECT_DIR$/lib/History.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="32" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/BookShelf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="4" selection-start="401" selection-end="401" vertical-scroll-proportion="0.25039873">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/repo_edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="29" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="2" selection-start="1711" selection-end="1711" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Book.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="24" selection-start="774" selection-end="774" vertical-scroll-proportion="-16.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/repo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="118" selection-start="324" selection-end="324" vertical-scroll-proportion="-3.75">
+        <state line="60" column="0" selection-start="1477" selection-end="1477" vertical-scroll-proportion="0.6082949">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/Commit.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="2.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="6" selection-start="695" selection-end="695" vertical-scroll-proportion="-4.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Book.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/BookShelf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/404.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/History.php">
+    <entry file="file://$PROJECT_DIR$/templates/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="24" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.516129">
+        <state line="4" column="0" selection-start="94" selection-end="94" vertical-scroll-proportion="-2.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/repo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="52" selection-start="52" selection-end="52" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/repo_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="25" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

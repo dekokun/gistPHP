@@ -7,17 +7,14 @@
  *
  */
 
-class View extends Slim_View
-{
-  static protected $_layout = NULL;
+class View extends Slim_View {
+  static protected $_layout = null;
 
-  public static function set_layout($layout = NULL)
-  {
+  public static function set_layout($layout = null) {
     self::$_layout = $layout;
   }
 
-  public function render($template)
-  {
+  public function render($template) {
     extract($this->data);
     $templatePath = $this->getTemplatesDirectory() . '/' . ltrim($template, '/');
     if (!file_exists($templatePath)) {
@@ -29,10 +26,9 @@ class View extends Slim_View
     return $this->_render_layout($html);
   }
 
-  public function _render_layout($_html)
-  {
+  public function _render_layout($_html) {
     extract($this->data);
-    if (self::$_layout !== NULL) {
+    if (self::$_layout !== null) {
       $layout_path = $this->getTemplatesDirectory() . '/' . ltrim(self::$_layout, '/');
       if (!file_exists($layout_path)) {
         throw new RuntimeException('View cannot render layout `' . $layout_path . '`. Layout does not exist.');
