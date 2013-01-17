@@ -4,3 +4,4 @@ logs/*
 test/Gittestdir/
 vendor/*
 .DS_Store
+workspace.xml
