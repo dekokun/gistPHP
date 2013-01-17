@@ -29,5 +29,14 @@ class Book {
   static protected function isExist($place) {
     return file_exists($place . '.git');
   }
+
+  public function addPage($contents, $comment) {
+    $path = $this->place . $this->name;
+    file_put_contents($path, $contents);
+    $this->git_wrapper->add(array($path));
+    if ($this->git_wrapper->isDirty()) {
+      $this->git_wrapper->commit(date('Y/m/d H:i:s') . ' ' . $comment);
+    }
+  }
 }
 

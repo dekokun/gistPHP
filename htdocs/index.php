@@ -49,19 +49,17 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
   );
 });
 
-$app->put('/repos/:repo_id', function ($repo_id) use ($app, $binary) {
-  $repo_dir  = REPO_DIR . $repo_id;
-  $git       = Repository::open($repo_dir, $binary, 0755);
+$app->put('/repos/:repo_id', function ($repo_id) use ($app, $bookshelf) {
+  try {
+    $book = $bookshelf->findBook($repo_id);
+  } catch (InvalidArgumentException $e) {
+    $app->redirect('/404');
+  }
   $post_vars = $app->request()->post();
   foreach ($post_vars as $key => $value) {
     if ($key === 'contents') {
-      $file_name = "$repo_dir/index_txt";
-      file_put_contents($file_name, $value);
-      $git->add(array($file_name));
+      $book->addPage($value, $post_vars['comment']);
     }
-  }
-  if ($git->isDirty()) {
-    $git->commit(date('Y/m/d H:i:s') . ' ' . $post_vars['comment']);
   }
   $app->redirect("/repos/$repo_id/HEAD");
 });
