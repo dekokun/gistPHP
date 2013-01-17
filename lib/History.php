@@ -6,8 +6,13 @@ class History implements Iterator
   protected $history;
   protected $position;
 
-  public function __construct($logs)
+  private function __construct($history)
   {
+    $this->position = 0;
+    $this->history = $history;
+  }
+
+  public static function parse ($logs) {
     $history = array();
     foreach ($logs as $log) {
       foreach (explode(PHP_EOL, $log) as $line) {
@@ -38,8 +43,7 @@ class History implements Iterator
     if(!empty($commit)) {
       array_push($history, $commit);
     }
-    $this->history = $history;
-    $this->position = 0;
+    return new self($history);
   }
 
   /**

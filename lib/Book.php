@@ -24,7 +24,7 @@ class Book {
   }
 
   public function getHistory() {
-    return new History($this->git_wrapper->getLog());
+    return History::parse($this->git_wrapper->getLog());
   }
 
   static protected function isExist($place) {
