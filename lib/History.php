@@ -15,33 +15,7 @@ class History implements Iterator
   public static function parse ($logs) {
     $history = array();
     foreach ($logs as $log) {
-      foreach (explode(PHP_EOL, $log) as $line) {
-        if (strpos($line, 'commit') === 0) {
-          if (!empty($commit)) {
-            array_push($history, $commit);
-            unset($commit);
-          }
-          $commit['hash'] = trim(substr($line, strlen('commit')));
-          $commit['shorthash'] = substr($commit['hash'], 0, 8);
-        } else if (strpos($line, 'Author:') === 0) {
-          $commit['author'] = trim(substr($line, strlen('Author:')));
-        } else if (strpos($line, 'AuthorDate:') === 0) {
-          $commit['authordate'] = trim(substr($line, strlen('AuthorDate:')));
-        } else if (strpos($line, 'CommitDate:') === 0) {
-          $commit['commitdate'] = trim(substr($line, strlen('CommitDate:')));
-        } else if (strpos($line, 'Commit:') === 0) {
-          $commit['committer'] = trim(substr($line, strlen('Commit:')));
-        } else {
-          if(isset($commit['message'])) {
-            $commit['message'] .= $line;
-          } else {
-            $commit['message'] = $line;
-          }
-        }
-      }
-    }
-    if(!empty($commit)) {
-      array_push($history, $commit);
+      array_push($history, Commit::parse($log));
     }
     return new self($history);
   }
