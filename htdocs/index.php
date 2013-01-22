@@ -65,11 +65,6 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $bookshelf) {
 $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
-  } catch (InvalidArgumentException $e) {
-    $app->render('404.php');
-    return;
-  }
-  try {
     $page = $book->getPage($commit_id);
   } catch (InvalidArgumentException $e) {
     $app->render('404.php');
