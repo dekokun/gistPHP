@@ -33,11 +33,6 @@ $app->get('/repos/:repo_id', function ($repo_id) use ($app) {
 $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
-  } catch (InvalidArgumentException $e) {
-    $app->render('404.php');
-    return;
-  }
-  try {
     $page = $book->getPage('HEAD');
   } catch (InvalidArgumentException $e) {
     $app->render('404.php');
