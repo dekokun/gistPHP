@@ -14,8 +14,8 @@ class Book {
   }
 
   public function getPage($version) {
-    $path = $this->place . self::filename;
-    if (! file_exists($path)) {
+    $full_name = $this->fullName();
+    if (! file_exists($full_name)) {
       return '';
     }
     return $this->git_wrapper->showFile(self::filename, $version);
@@ -30,12 +30,16 @@ class Book {
   }
 
   public function addPage($contents, $comment) {
-    $path = $this->place . self::filename;
-    file_put_contents($path, $contents);
-    $this->git_wrapper->add(array($path));
+    $full_name = $this->fullName();
+    file_put_contents($full_name, $contents);
+    $this->git_wrapper->add(array($full_name));
     if ($this->git_wrapper->isDirty()) {
       $this->git_wrapper->commit(date('Y/m/d H:i:s') . ' ' . $comment);
     }
+  }
+
+  protected function fullName() {
+    return $this->place . self::filename;
   }
 }
 
