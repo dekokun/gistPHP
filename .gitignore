@@ -3,6 +3,6 @@ logs/*
 /nbproject/
 test/Gittestdir/
 vendor/*
-.idea/*
-*.iml
 .DS_Store
+.idea/*
+*.imi

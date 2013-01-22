@@ -1,46 +1,21 @@
 <?php
 
-class History implements Iterator
-{
+class History implements Iterator {
 
   protected $history;
   protected $position;
 
-  public function __construct($logs)
-  {
-    $history = array();
-    $message = '';
-    foreach ($logs as $log) {
-      foreach (explode(PHP_EOL, $log) as $line) {
-        if (strpos($line, 'commit') === 0) {
-          if (!empty($commit)) {
-            array_push($history, $commit);
-            unset($commit);
-          }
-          $commit['hash'] = trim(substr($line, strlen('commit')));
-          $commit['shorthash'] = substr($commit['hash'], 0, 8);
-        } else if (strpos($line, 'Author:') === 0) {
-          $commit['author'] = trim(substr($line, strlen('Author:')));
-        } else if (strpos($line, 'AuthorDate:') === 0) {
-          $commit['authordate'] = trim(substr($line, strlen('AuthorDate:')));
-        } else if (strpos($line, 'CommitDate:') === 0) {
-          $commit['commitdate'] = trim(substr($line, strlen('CommitDate:')));
-        } else if (strpos($line, 'Commit:') === 0) {
-          $commit['committer'] = trim(substr($line, strlen('Commit:')));
-        } else {
-          if(isset($commit['message'])) {
-            $commit['message'] .= $line;
-          } else {
-            $commit['message'] = $line;
-          }
-        }
-      }
-    }
-    if(!empty($commit)) {
-      array_push($history, $commit);
-    }
-    $this->history = $history;
+  private function __construct($history) {
     $this->position = 0;
+    $this->history  = $history;
+  }
+
+  public static function parse($logs) {
+    $history = array();
+    foreach ($logs as $log) {
+      array_push($history, Commit::parse($log));
+    }
+    return new self($history);
   }
 
   /**
@@ -49,8 +24,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.current.php
    * @return mixed Can return any type.
    */
-  public function current()
-  {
+  public function current() {
     return $this->history[$this->position];
   }
 
@@ -60,8 +34,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.next.php
    * @return void Any returned value is ignored.
    */
-  public function next()
-  {
+  public function next() {
     $this->position += 1;
   }
 
@@ -71,8 +44,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.key.php
    * @return mixed scalar on success, or null on failure.
    */
-  public function key()
-  {
+  public function key() {
     return $this->position;
   }
 
@@ -83,8 +55,7 @@ class History implements Iterator
    * @return boolean The return value will be casted to boolean and then evaluated.
    * Returns true on success or false on failure.
    */
-  public function valid()
-  {
+  public function valid() {
     return isset($this->history[$this->position]);
   }
 
@@ -94,8 +65,7 @@ class History implements Iterator
    * @link http://php.net/manual/en/iterator.rewind.php
    * @return void Any returned value is ignored.
    */
-  public function rewind()
-  {
+  public function rewind() {
     $this->position = 0;
   }
 }
