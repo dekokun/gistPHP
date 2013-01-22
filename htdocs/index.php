@@ -34,12 +34,14 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
   } catch (InvalidArgumentException $e) {
-    $app->redirect('/404');
+    $app->render('404.php');
+    return;
   }
   try {
     $page = $book->getPage('HEAD');
   } catch (InvalidArgumentException $e) {
-    $app->redirect('/404');
+    $app->render('404.php');
+    return;
   }
   $app->render('repo_edit.php',
     array(
@@ -53,7 +55,8 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
   } catch (InvalidArgumentException $e) {
-    $app->redirect('/404');
+    $app->render('404.php');
+    return;
   }
   $post_vars = $app->request()->post();
   foreach ($post_vars as $key => $value) {
@@ -68,12 +71,14 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   try {
     $book = $bookshelf->findBook($repo_id);
   } catch (InvalidArgumentException $e) {
-    $app->redirect('/404');
+    $app->render('404.php');
+    return;
   }
   try {
     $page = $book->getPage($commit_id);
   } catch (InvalidArgumentException $e) {
-    $app->redirect('/404');
+    $app->render('404.php');
+    return;
   }
   $app->render('repo.php',
     array(
@@ -91,6 +96,7 @@ $app->post('/repos', function () use ($app, $bookshelf) {
 
 $app->notFound(function () use ($app) {
   $app->render('404.php');
+  return;
 });
 
 $app->run();
