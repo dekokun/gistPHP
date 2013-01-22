@@ -3,23 +3,22 @@
 class Book {
   protected $place;
   protected $git_wrapper;
-  protected $name;
+  const filename = 'index';
 
   public function __construct($book_place, $git_wrapper) {
     $this->place = substr($book_place, -1) === DIRECTORY_SEPARATOR ? $book_place : $book_place . DIRECTORY_SEPARATOR;
     if (!static::isExist($this->place)) {
       throw new InvalidArgumentException('The book is not exists.');
     }
-    $files = glob($this->place . '*');
-    if (count($files) === 0) {
-      throw new InvalidArgumentException('The page is not exists.');
-    }
-    $this->name        = basename($files[0]);
     $this->git_wrapper = $git_wrapper;
   }
 
   public function getPage($version) {
-    return $this->git_wrapper->showFile($this->name, $version);
+    $path = $this->place . self::filename;
+    if (! file_exists($path)) {
+      return '';
+    }
+    return $this->git_wrapper->showFile(self::filename, $version);
   }
 
   public function getHistory() {
@@ -31,7 +30,7 @@ class Book {
   }
 
   public function addPage($contents, $comment) {
-    $path = $this->place . $this->name;
+    $path = $this->place . self::filename;
     file_put_contents($path, $contents);
     $this->git_wrapper->add(array($path));
     if ($this->git_wrapper->isDirty()) {
