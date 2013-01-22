@@ -1,4 +1,6 @@
 {
+    "name": "dekokun/gistphp",
+    "description": "gist's PHP version",
     "repositories": [
     ],
     "autoload": {
