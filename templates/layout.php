@@ -5,6 +5,7 @@
   <title><?php echo isset($title) ? $title . ' - ' : ''?>gistphp</title>
   <link href="/twitter_bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"></link>
   <link href="/codemirror/codemirror.css" type="text/css" rel="stylesheet"></link>
+  <link href="/css/application.css" type="text/css" rel="stylesheet"></link>
 </head>
 <body>
 <?php echo $_html ?>
