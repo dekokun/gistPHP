@@ -5,5 +5,5 @@
     <textarea id="code" name="contents"><?php echo (isset($file) ? h($file) : '') ?></textarea>
     変更内容：<input type="text" name="comment">
   </fieldset>
-  <input type="submit" value="Submit">
+  <input class="btn" type="submit" value="Submit">
 </form>
