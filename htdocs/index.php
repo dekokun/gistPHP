@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 use TQ\Git\Cli\Binary;
+use TQ\Git\Cli\CallException;
 use TQ\Git\Repository\Repository;
 
 define('APP_DIR', dirname(__FILE__) . '/../');
@@ -66,17 +67,19 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   try {
     $book = $bookshelf->findBook($repo_id);
     $page = $book->getPage($commit_id);
+    $app->render('repo.php',
+        array(
+          'file'     => $page,
+          'repo_id'  => $repo_id,
+          'history'  => $book->getHistory(),
+          'readonly' => true
+    ));
+  } catch (TQ\Git\Cli\CallException $e){
+      $app->redirect("/repos/$repo_id/edit");
   } catch (InvalidArgumentException $e) {
     $app->render('404.php');
     return;
   }
-  $app->render('repo.php',
-    array(
-      'file'     => $page,
-      'repo_id'  => $repo_id,
-      'history'  => $book->getHistory(),
-      'readonly' => true
-    ));
 });
 
 $app->post('/repos', function () use ($app, $bookshelf) {
