@@ -1,6 +1,6 @@
 <textarea id="code"><?php echo h($file) ?></textarea>
 <form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
-  <input type="submit" value="編集">
+  <input class="btn" type="submit" value="編集">
 </form>
 <?php foreach ($history as $commit): ?>
   <div>
