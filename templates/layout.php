@@ -36,6 +36,5 @@
   CodeMirror.fromTextArea(code, conf);
 
 </script>
-<script src="/twitter_bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
