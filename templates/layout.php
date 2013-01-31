@@ -28,7 +28,7 @@
   var code = document.getElementById("code");
   var conf = {
     <?php echo (isset($mode) ? "mode: " . $mode . ',': '') ?>
-    <?php echo ((isset($readonly) && $readonly) ? "readOnly: true" . ',': '') ?>
+    <?php echo ((isset($readonly) && $readonly) ? "readOnly: 'nocursor'" . ',': '') ?>
     lineNumbers: true,
     showCursorWhenSelecting: true,
     smartIndent: false,
