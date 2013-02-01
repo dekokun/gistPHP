@@ -7,7 +7,7 @@
   <link href="/codemirror/codemirror.css" type="text/css" rel="stylesheet"></link>
   <link href="/css/application.css" type="text/css" rel="stylesheet"></link>
 </head>
-<body>
+<body style="background-color: #ff0000">
 <div class="container">
   <div class="navbar">
     <div class="nav-inner">
