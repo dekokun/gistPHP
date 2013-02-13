@@ -13,7 +13,7 @@ function h($str, $encoding = 'UTF-8') {
   return htmlspecialchars($str, ENT_QUOTES, $encoding);
 }
 
-$app = new Slim(array(
+$app = new Slim\Slim(array(
   'view'           => new View(),
   'templates.path' => TEMPLATE_DIR
 ));
