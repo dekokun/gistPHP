@@ -7,7 +7,7 @@
         "psr-0": {"": "lib"}
     },
     "require": {
-        "slim/slim": "1.6.4"
+        "slim/slim": "*"
       , "teqneers/PHP-Stream-Wrapper-for-Git": "dev-master"
     }
 }
