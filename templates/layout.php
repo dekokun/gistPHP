@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="container">
-<?php echo $_html ?>
+  {% block content %}{% endblock %}
 </div>
 <script type="text/javascript " src="/codemirror/codemirror-compressed.js"></script>
 <script>

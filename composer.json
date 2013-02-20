@@ -8,6 +8,8 @@
     },
     "require": {
         "slim/slim": "*"
+      , "slim/extras": "*"
+      , "twig/twig": "*"
       , "teqneers/PHP-Stream-Wrapper-for-Git": "dev-master"
     }
 }

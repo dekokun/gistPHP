@@ -13,12 +13,12 @@ function h($str, $encoding = 'UTF-8') {
   return htmlspecialchars($str, ENT_QUOTES, $encoding);
 }
 
+$twigView = new \Slim\Extras\Views\Twig();
+
 $app = new Slim\Slim(array(
-  'view'           => new View(),
+  'view'           => $twigView,
   'templates.path' => TEMPLATE_DIR
 ));
-
-View::set_layout('layout.php');
 
 $binary    = new Binary('/usr/bin/env git');
 $bookshelf = new BookShelf(REPO_DIR, 'TQ\Git\Repository\Repository', $binary);
