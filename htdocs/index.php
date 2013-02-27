@@ -24,7 +24,7 @@ $binary    = new Binary('/usr/bin/env git');
 $bookshelf = new BookShelf(REPO_DIR, 'TQ\Git\Repository\Repository', $binary);
 
 $app->get('/', function () use ($app) {
-  $app->render('index.php');
+  $app->render('index.twig');
 });
 
 $app->get('/repos/:repo_id', function ($repo_id) use ($app) {
@@ -36,10 +36,10 @@ $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
     $book = $bookshelf->findBook($repo_id);
     $page = $book->getPage('HEAD');
   } catch (InvalidArgumentException $e) {
-    $app->render('404.php');
+    $app->render('404.twig');
     return;
   }
-  $app->render('repo_edit.php',
+  $app->render('repo_edit.twig',
     array(
       'repo_id' => $repo_id,
       'file'    => $page
@@ -51,7 +51,7 @@ $app->put('/repos/:repo_id', function ($repo_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
   } catch (InvalidArgumentException $e) {
-    $app->render('404.php');
+    $app->render('404.twig');
     return;
   }
   $post_vars = $app->request()->post();
@@ -67,7 +67,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   try {
     $book = $bookshelf->findBook($repo_id);
     $page = $book->getPage($commit_id);
-    $app->render('repo.php',
+    $app->render('repo.twig',
         array(
           'file'     => $page,
           'repo_id'  => $repo_id,
@@ -77,7 +77,7 @@ $app->get('/repos/:repo_id/:commit_id', function ($repo_id, $commit_id) use ($ap
   } catch (TQ\Git\Cli\CallException $e){
       $app->redirect("/repos/$repo_id/edit");
   } catch (InvalidArgumentException $e) {
-    $app->render('404.php');
+    $app->render('404.twig');
     return;
   }
 });
@@ -88,7 +88,7 @@ $app->post('/repos', function () use ($app, $bookshelf) {
 });
 
 $app->notFound(function () use ($app) {
-  $app->render('404.php');
+  $app->render('404.twig');
   return;
 });
 
