@@ -1,11 +1,12 @@
-<textarea id="code"><?php echo h($file) ?></textarea>
-<form method="GET" action="/repos/<?php echo $repo_id ?>/edit">
+{% extends "layout.php" %}
+{% block content %}
+<textarea id="code">{{file}}</textarea>
+<form method="GET" action="/repos/{{repo_id}}/edit">
   <input class="btn" type="submit" value="編集">
 </form>
-<?php foreach ($history as $commit): ?>
+{% for commit in history %}
   <div>
-    <p><a
-        href="/repos/<?php echo $repo_id . '/' . $commit->hash() ?>"><?php echo $commit->shorthash() ?></a><?php echo h($commit->message()) ?>
-    </p>
+    <p><a href="/repos/{{repo_id ~ '/' ~ commit.hash}}">{{commit.hash|slice(1,6)}}</a>{{commit.message}}</p>
   </div>
-<?php endforeach; ?>
+{% endfor %}
+{% endblock %}

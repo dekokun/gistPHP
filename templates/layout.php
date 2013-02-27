@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title><?php echo isset($title) ? $title . ' - ' : ''?>gistphp</title>
+  <title>{{title | default('gist')}} - gistphp</title>
   <link href="/twitter_bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"></link>
   <link href="/codemirror/codemirror.css" type="text/css" rel="stylesheet"></link>
   <link href="/css/application.css" type="text/css" rel="stylesheet"></link>
@@ -27,8 +27,12 @@
 <script>
   var code = document.getElementById("code");
   var conf = {
-    <?php echo (isset($mode) ? "mode: " . $mode . ',': '') ?>
-    <?php echo ((isset($readonly) && $readonly) ? "readOnly: 'nocursor'" . ',': '') ?>
+    {% if mode %}
+    mode: {{mode}},
+    {% endif %}
+    {% if readonly %}
+    readOnly: 'nocursor',
+    {% endif %}
     lineNumbers: true,
     showCursorWhenSelecting: true,
     smartIndent: false,
