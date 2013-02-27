@@ -7,6 +7,12 @@ class Commit {
     $this->commit = $commit;
   }
 
+  public function __get($name) {
+    if (! array_key_exists($name, $this->commit)) {
+      throw new BadMethodCallException();
+    }
+    return $this->commit[$name];
+  }
   public static function parse($log) {
     foreach (explode(PHP_EOL, $log) as $line) {
       if (strpos($line, 'commit') === 0) {
