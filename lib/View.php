@@ -7,7 +7,7 @@
  *
  */
 
-class View extends Slim_View {
+class View extends Slim\View {
   static protected $_layout = null;
 
   public static function set_layout($layout = null) {
