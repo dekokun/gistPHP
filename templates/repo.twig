@@ -4,9 +4,13 @@
 <form method="GET" action="/repos/{{repo_id}}/edit">
   <input class="btn" type="submit" value="編集">
 </form>
+
+<form method="GET" action="/repos/{{repo_id}}/diff">
 {% for commit in history %}
   <div>
-    <p><a href="/repos/{{repo_id ~ '/' ~ commit.hash}}">{{commit.hash|slice(1,6)}}</a>{{commit.message}}</p>
+    <p><input type="radio" name="before" value="{{commit.hash}}"><input type="radio" name="after" value="{{commit.hash}}"><a href="/repos/{{repo_id ~ '/' ~ commit.hash}}">{{commit.hash|slice(1,6)}}</a>{{commit.message}}</p>
   </div>
 {% endfor %}
+  <input class="btn" type="submit" value="diff">
+</form>
 {% endblock %}

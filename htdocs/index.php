@@ -31,6 +31,13 @@ $app->get('/repos/:repo_id', function ($repo_id) use ($app) {
   $app->redirect("/repos/$repo_id/HEAD");
 });
 
+$app->get('/repos/:repo_id/diff', function ($repo_id) use ($app) {
+  $req = $app->request();
+  $before_id = $req->get('before');
+  $after_id = $req->get('after');
+  var_dump($before_id, $after_id);
+});
+
 $app->get('/repos/:repo_id/edit', function ($repo_id) use ($app, $bookshelf) {
   try {
     $book = $bookshelf->findBook($repo_id);
